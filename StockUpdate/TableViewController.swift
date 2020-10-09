@@ -8,7 +8,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SwiftSpinner
 
 class TableViewController: UITableViewController {
 
@@ -19,14 +18,16 @@ class TableViewController: UITableViewController {
     
     let refresh = UIRefreshControl()
     
+    var textField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        arr.append(StockProfile("MSFT"))
-        arr.append(StockProfile("AMZN"))
-        arr.append(StockProfile("GOOG"))
-        arr.append(StockProfile("TSLA"))
-        arr.append(StockProfile("FB"))
+        initializeValues()
+    }
+    
+    
+    func initializeValues(){
+       
         
         if #available(iOS 10.0, *){
             tblView.refreshControl = refresh
@@ -36,19 +37,44 @@ class TableViewController: UITableViewController {
         
         refresh.addTarget(self, action: #selector(refreshStockData(_:)), for: .valueChanged)
         refresh.attributedTitle = NSAttributedString(string: "Getting Stock Values")
-        
-
-        
+    
     }
+    
+    
     
     @ objc private func refreshStockData(_ sender: Any){
         refreshData()
     }
     
     
-    @IBAction func refreshStockValues(_ sender: Any) {
+    @IBAction func addNewStock(_ sender: Any) {
         
+        let alert = UIAlertController(title: "Add Stock", message: "Type Stock Symbol", preferredStyle: .alert)
+        
+        let OK = UIAlertAction(title: "OK", style: .default) { (action) in
+            guard let symbol = self.textField.text else {return}
+            self.addStockinDB(symbol)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            print("Cancel Pressed")
+        }
+        
+        alert.addTextField { (stockTextField) in
+            stockTextField.placeholder = "Type Stock Symbol"
+            self.textField = stockTextField
+        }
+        
+        alert.addAction(OK)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func addStockinDB(_ symbol : String){
+        arr.append(StockProfile(symbol))
         refreshData()
+        
     }
     
     
@@ -58,9 +84,9 @@ class TableViewController: UITableViewController {
         
         AF.request(url).responseJSON { (response) in
             self.refresh.endRefreshing()
-            if response.error == nil{
+            if response.error == nil {
                 
-                // Get JSON STring and convert it into JSON Array
+                // Get JSON String and convert it into JSON Array
                 guard let jsonString = response.data else { return }
                 guard let stocks: [JSON] = JSON(jsonString).array else { return }
                 
@@ -73,21 +99,15 @@ class TableViewController: UITableViewController {
                 for stock in stocks{
                     
                     let stockProfile = self.getStockProfileFromJSON(stock: stock)
-                    
                     if stockProfile.symbol == "NONE" { return }
-
                     self.arr.append(stockProfile)
                  
                 }
                 // reload table
                 self.tblView.reloadData()
-                
             }
-            
         }
-        
-        
-        
+
     }
     
     func getStockProfileFromJSON(stock : JSON)-> StockProfile{
@@ -113,19 +133,17 @@ class TableViewController: UITableViewController {
     
     func getURL() -> String{
         var url = apiURL
-        
         for stock in arr {
             url.append(stock.symbol)
             url.append(",")
         }
         url = String(url.dropLast())
-        
         url.append("?apikey=\(apiKey)")
-        
         return url
     }
 
  
+    //MARK: Table View Functions
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arr.count
@@ -137,8 +155,8 @@ class TableViewController: UITableViewController {
         
         cell.lblPrice.text = "$\(arr[indexPath.row].price)"
         cell.lblSymbol.text = arr[indexPath.row].symbol
-        
-
+        cell.lblCompanyName.text = arr[indexPath.row].companyName
+    
         return cell
     }
     

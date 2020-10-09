@@ -31,9 +31,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Stock Values" id="9ee-eb-UHP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="1uu-b3-B6J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1uu-b3-B6J">
                             <connections>
-                                <action selector="refreshStockValues:" destination="uJ5-bp-5bC" id="BHb-cY-nzg"/>
+                                <action selector="addNewStock:" destination="uJ5-bp-5bC" id="BHb-cY-nzg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

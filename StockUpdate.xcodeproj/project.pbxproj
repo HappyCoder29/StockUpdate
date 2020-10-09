@@ -17,7 +17,6 @@
 		75BE612C2526CBFB00846587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75BE612A2526CBFB00846587 /* Main.storyboard */; };
 		75BE612E2526CBFC00846587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BE612D2526CBFC00846587 /* Assets.xcassets */; };
 		75BE61312526CBFC00846587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75BE612F2526CBFC00846587 /* LaunchScreen.storyboard */; };
-		75BE61572526DFD500846587 /* StockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE61562526DFD500846587 /* StockData.swift */; };
 		C22416CFF63F193C9D59F670 /* Pods_StockUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E911E819271FC00C10351E /* Pods_StockUpdate.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		75BE612D2526CBFC00846587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75BE61302526CBFC00846587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75BE61322526CBFC00846587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75BE61562526DFD500846587 /* StockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockData.swift; sourceTree = "<group>"; };
 		C7E911E819271FC00C10351E /* Pods_StockUpdate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockUpdate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,7 +77,6 @@
 				75BE612D2526CBFC00846587 /* Assets.xcassets */,
 				75BE612F2526CBFC00846587 /* LaunchScreen.storyboard */,
 				75BE61322526CBFC00846587 /* Info.plist */,
-				75BE61562526DFD500846587 /* StockData.swift */,
 				75ADF5A4252FF8AD00791BA4 /* TableViewController.swift */,
 				75ADF5A7252FF96C00791BA4 /* TableViewCell.swift */,
 				75ADF5A8252FF96C00791BA4 /* TableViewCell.xib */,
@@ -227,7 +224,6 @@
 				75ADF5A9252FF96C00791BA4 /* TableViewCell.swift in Sources */,
 				75ADF5A5252FF8AD00791BA4 /* TableViewController.swift in Sources */,
 				75ADF5B42530014500791BA4 /* Constants.swift in Sources */,
-				75BE61572526DFD500846587 /* StockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

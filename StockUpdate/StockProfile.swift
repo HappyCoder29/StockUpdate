@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class StockProfile{
     
     var symbol: String! = ""
